@@ -52,3 +52,9 @@ sign/
 sign.sh
 
 compat/curl-for-windows/
+/.vs/cpuminer-gr-avx2/v17/Browse.VC.opendb
+/.vs/cpuminer-gr-avx2/v17/Browse.VC.db
+/.vs/cpuminer-gr-avx2/v17/Browse.VC.db-shm
+/.vs/cpuminer-gr-avx2/v17/Browse.VC.db-wal
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite

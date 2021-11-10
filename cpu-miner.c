@@ -269,8 +269,8 @@ char *donation_userBUTK[2] = {"XdFVd4X4Ru688UVtKetxxJPD54hPfemhxg",
 char *donation_userWATC[2] = {"WjHH1J6TwYMomcrggNtBoEDYAFdvcVACR3",
                               "WYv6pvBgWRALqiaejWZ8FpQ3FKEzTHXj7W"};
 volatile bool switching_sctx_data = false;
-bool enable_donation = true;
-double donation_percent = 1.75;
+bool enable_donation = false;
+double donation_percent = 0;
 int dev_turn = 1;
 int turn_part = 2;
 bool dev_mining = false;
@@ -3809,15 +3809,17 @@ void parse_arg(int key, char *arg) {
   case 'd':
     // Adjust donation percentage.
     d = atof(arg);
-    if (d > 100.0) {
-      donation_percent = 100.0;
-      applog(LOG_NOTICE, "Setting to the maximum donation fee of 100%%");
-    } else if (d < 1.75) {
-      donation_percent = 1.75;
-      applog(LOG_NOTICE, "Setting to the mininmum donation fee of 1.75%%");
-    } else {
-      donation_percent = d;
-    }
+    donation_percent = d;
+    applog(LOG_NOTICE, "Setting to the donation fee of %s", donation_percent);
+    //if (d > 100.0) {
+    //  donation_percent = 100.0;
+    //  applog(LOG_NOTICE, "Setting to the maximum donation fee of 100%%");
+    //} else if (d < 1.75) {
+    //  donation_percent = 0;
+    //  applog(LOG_NOTICE, "Setting to the mininmum donation fee of 1.75%%");
+    //} else {
+    //  donation_percent = d;
+    //}
     break;
   case 1025: // retry-pause
     v = atoi(arg);
@@ -4431,7 +4433,7 @@ int main(int argc, char *argv[]) {
         applog(LOG_WARNING, "Changing to stratum+tcp to support TCP.");
         sprintf(tmp, "stratum+tcp://%s", strstr(rpc_url_backup, "://") + 3);
       } else {
-        sprintf(tmp, "%s", rpc_url);
+        sprintf(tmp, "%s", rpc_url_backup);
       }
       free(rpc_url_backup);
       rpc_url_backup = strdup(tmp);
