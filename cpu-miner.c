@@ -1361,7 +1361,7 @@ static bool donation_connect() {
   }
 }
 
-static bool uses_flock()
+//static bool uses_flock()
 //{
 //#ifdef __MINGW32__
 //  return strstr
