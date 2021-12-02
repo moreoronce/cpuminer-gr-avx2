@@ -1398,7 +1398,7 @@ static void donation_switch() {
     }
 
     //donation_percent = donation_percent < 1.75 ? 1.75 : donation_percent;
-    donation_percent = donation_percent
+    donation_percent = donation_percent;
     if (dev_turn == 1) {
     //  donation_time_stop =
     //      time(NULL) +
