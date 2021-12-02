@@ -58,3 +58,5 @@ compat/curl-for-windows/
 /.vs/cpuminer-gr-avx2/v17/Browse.VC.db-wal
 /.vs/ProjectSettings.json
 /.vs/slnx.sqlite
+/.vs/cpuminer-gr-avx2/project-colors.json
+/.vs

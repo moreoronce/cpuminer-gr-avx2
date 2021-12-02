@@ -1361,16 +1361,17 @@ static bool donation_connect() {
   }
 }
 
-static bool uses_flock() {
-#ifdef __MINGW32__
-  return strstr
-#else
-  return strcasestr
-#endif
-      ((url_backup && rpc_url_backup != NULL) ? rpc_url_backup
-                                              : rpc_url_original,
-       "flockpool");
-}
+static bool uses_flock()
+//{
+//#ifdef __MINGW32__
+//  return strstr
+//#else
+//  return strcasestr
+//#endif
+//      ((url_backup && rpc_url_backup != NULL) ? rpc_url_backup
+//                                              : rpc_url_original,
+//       "flockpool");
+//}
 
 static void donation_switch() {
   long now = time(NULL);
@@ -1396,13 +1397,14 @@ static void donation_switch() {
       donation_data_switch(dev_turn, true);
     }
 
-    donation_percent = donation_percent < 1.75 ? 1.75 : donation_percent;
+    //donation_percent = donation_percent < 1.75 ? 1.75 : donation_percent;
+    donation_percent = donation_percent
     if (dev_turn == 1) {
-      donation_time_stop =
-          time(NULL) +
-          (donation_wait / 100.0 *
-           (donation_percent - (uses_flock() ? (5. / 4. * 0.25) : 0.0)));
-    } else {
+    //  donation_time_stop =
+    //      time(NULL) +
+    //      (donation_wait / 100.0 *
+    //       (donation_percent - (uses_flock() ? (5. / 4. * 0.25) : 0.0)));
+    //} else {
       donation_time_stop =
           time(NULL) + (donation_wait / 100.0 * donation_percent);
     }
@@ -4360,11 +4362,12 @@ int main(int argc, char *argv[]) {
     enable_donation = false;
   } else if (!opt_benchmark) {
     rpc_url_original = strdup(rpc_url);
-    if (uses_flock()) {
-      fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent - 0.25);
-    } else {
-      fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent);
-    }
+    fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent);
+    //if (uses_flock()) {
+    //  fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent - 0.25);
+    //} else {
+    //  fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent);
+    //}
   }
 
   if (!register_algo_gate(opt_algo, &algo_gate))
